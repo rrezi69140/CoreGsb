@@ -34,6 +34,25 @@ namespace CoreGsb.Models.Metiers
         public string Password { get => password; set { password = value; } }
         public string TypeVisiteur { get => typeVisiteur; set { typeVisiteur = value; } }
 
+        public Visiteur(
+          int idVisiteur,
+         int IdLaboratoire,
+         int IdSecteur,
+         string  Nom,
+         string Prenom,
+         string AdresseVisiteur,
+         string CodePostaleVisiteur,
+         string VilleVisteur,
+         DateTime DateEmbauche,
+         string Login,
+         string Password,
+         string TypeVisiteur
+            )
+
+        {
+
+        }
+
 
 
 

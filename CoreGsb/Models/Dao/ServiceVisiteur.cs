@@ -31,33 +31,35 @@ namespace CoreGsb.Models.Dao
 
         public static DataTable GetUnVisiteur(string login)
         {
-            DataTable UnVisiteurs = new DataTable();
+            DataTable dt;
+            Visiteur INvISIT = null;
+            String RequetteSQL = $"SELECT * FROM Visiteur where login_visiteur  =  {login}   ";
             Serreurs er = new Serreurs("Erreur de lecture des visiteurs ", "Visiteur.GetUnVisiteur");
-            Visiteur visiteur = null;
+
             try
             { 
-                String RequetteSQL = $"SELECT * FROM Visiteur where login_visiteur  =  {login}   ";
-                UnVisiteurs = DBInterface.Lecture(RequetteSQL, er);
-                if (UnVisiteurs.IsInitialized && UnVisiteurs.Rows.Count > 0)
+                
+                dt = DBInterface.Lecture(RequetteSQL, er);
+                if (dt.IsInitialized && dt.Rows.Count > 0)
                 {
-                    visiteur = new Visiteur();
-                    DataRow dataRow = UnVisiteurs.Rows[0];
+                    INvISIT = new Visiteur();
+                    DataRow dataRow = dt.Rows[0];
                     
-                    visiteur.IdVisiteur = Int16.Parse(dataRow[0].ToString());
-                    visiteur.IdLaboratoire = Int16.Parse(dataRow[1].ToString());
-                    visiteur.IdSecteur = Int16.Parse(dataRow[2].ToString());
-                    visiteur.Nom = (dataRow[3].ToString());
-                    visiteur.Prenom = (dataRow[4].ToString());
-                    visiteur.AdresseVisiteur = (dataRow[5].ToString());
-                    visiteur.CodePostaleVsiteur = (dataRow[6].ToString());
-                    visiteur.VilleVisteur = (dataRow[7].ToString());
+                    INvISIT.IdVisiteur = Int16.Parse(dataRow[0].ToString());
+                    INvISIT.IdLaboratoire = Int16.Parse(dataRow[1].ToString());
+                    INvISIT.IdSecteur = Int16.Parse(dataRow[2].ToString());
+                    INvISIT.Nom = (dataRow[3].ToString());
+                    INvISIT.Prenom = (dataRow[4].ToString());
+                    INvISIT.AdresseVisiteur = (dataRow[5].ToString());
+                    INvISIT.CodePostaleVsiteur = (dataRow[6].ToString());
+                    INvISIT.VilleVisteur = (dataRow[7].ToString());
                     //  visiteur.DateEmbauche = (Int16.Parse.dataRow[8].ToString();
-                    visiteur.Login = (dataRow[9].ToString());
-                    visiteur.Password = (dataRow[10].ToString());
-                    visiteur.TypeVisiteur = (dataRow[11].ToString());
+                    INvISIT.Login = (dataRow[9].ToString());
+                    INvISIT.Password = (dataRow[10].ToString());
+                    INvISIT.TypeVisiteur = (dataRow[11].ToString());
 
                 }
-                return visiteur;
+                return INvISIT;
 
             }
             catch (Exception e)
