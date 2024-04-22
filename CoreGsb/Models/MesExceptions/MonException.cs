@@ -70,6 +70,13 @@ namespace CoreGsb.Models.MesExceptions
             return (_support);
         }
 
+        public string Messages()
+        {
+            if (_systeme == "")
+                _support = "";
+            return (_utilisateur + _systeme + _support);
+        }
+
 
 
 
