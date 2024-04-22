@@ -83,6 +83,13 @@ namespace CoreGsb.Controllers
         }
 
 
-       
+        public ActionResult Connexion()
+        {
+
+            
+            return View();
+        }
+
+
     }   
 }
