@@ -1,31 +1,41 @@
-﻿using CoreGsb.Models.Dao;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using CoreGsb.Models.Dao;
+using CoreGsb.Models.MesExceptions;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+
 
 namespace CoreGsb.Controllers
 {
-    public class ConnexionController : Controller
+    public class GestionMedicament : Controller
     {
-        // GET: ConnexionController1
-        
+        // GET: GestionMedicament
         public ActionResult Index()
         {
-            return View();
+            System.Data.DataTable MesMedicament = null;
+            try
+            {
+                MesMedicament = ServiceMedicament.GetTousLesMedicament();
+            }
+            catch(MonException e) {
+                ModelState.AddModelError("Erreur", "Erreur lors  de la récuperation des mangas : " + e.Message);
+            }
+            return View(MesMedicament);
         }
 
-        // GET: ConnexionController1/Details/5
+        // GET: GestionMedicament/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: ConnexionController1/Create
+        // GET: GestionMedicament/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ConnexionController1/Create
+        // POST: GestionMedicament/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -40,13 +50,13 @@ namespace CoreGsb.Controllers
             }
         }
 
-        // GET: ConnexionController1/Edit/5
+        // GET: GestionMedicament/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: ConnexionController1/Edit/5
+        // POST: GestionMedicament/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -61,13 +71,13 @@ namespace CoreGsb.Controllers
             }
         }
 
-        // GET: ConnexionController1/Delete/5
+        // GET: GestionMedicament/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: ConnexionController1/Delete/5
+        // POST: GestionMedicament/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
@@ -81,8 +91,5 @@ namespace CoreGsb.Controllers
                 return View();
             }
         }
-
-
-       
-    }   
+    }
 }

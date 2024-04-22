@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div>
+    <center><h1><font color="#636262">Sérvice Accéssible</font></h1></center>
+
+</div>
+
+<div class="BandeauSelectionService">
+    <div class="BoutonSelectionService">
+
+        <center><a asp-area="" asp-controller="GestionMedicament" asp-action="Index">Gestion  médicament</a></center>
+
+    </div>
+
+    <div class="BoutonSelectionService">
+
+        <center><a href="{{url('/GestionFormulation')}}">Gestion  Formulation</a></center>
+
+    </div>
+
+</div>
+
+

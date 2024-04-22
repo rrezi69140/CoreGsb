@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Security;
 using CoreGsb.Models.MesExceptions;
 using CoreGsb.Models.Persistance;
 namespace CoreGsb.Models.Dao
@@ -27,15 +28,15 @@ namespace CoreGsb.Models.Dao
             }
         }
 
-        public static DataTable UnVisiteur(string login)
+        public static DataTable GetUnVisiteur(string login)
         {
-            DataTable MesVisiteurs = new DataTable();
-            Serreurs er = new Serreurs("Erreur de lecture des visiteurs ", "Visiteur.GetVisiteur");
+            DataTable UnVisiteurs = new DataTable();
+            Serreurs er = new Serreurs("Erreur de lecture des visiteurs ", "Visiteur.GetUnVisiteur");
 
             try
             { 
                 String RequetteSQL = $"SELECT * FROM Visiteur where login_visiteur  =  {login}   ";
-                MesVisiteurs = DBInterface.Lecture(RequetteSQL, er);
+                UnVisiteurs = DBInterface.Lecture(RequetteSQL, er);
                 return UnVisiteurs;
 
             }
@@ -45,5 +46,8 @@ namespace CoreGsb.Models.Dao
 
             }
         }
+
+
+       
     }
 }

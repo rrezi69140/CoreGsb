@@ -1,0 +1,77 @@
+﻿@model System.Data.DataTable
+@using System.Data;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+
+</head>
+    <div class="container">
+        <div class="blanc">
+            <center ><h1>Liste des Medicaments </h1> </center >
+        </div>
+        <table class="table table-bordered table-striped" id="TableMedicament">
+            <thead>
+            <tr>
+
+                <th>Nom du Medicament </th>
+                <th>Famille</th>
+                <th>Depot Legal</th>
+                <th>effets</th>
+                <th>Contre Indication</th>
+                <th>Prix echantillion</th>
+                <th>Presentation</th>
+                <th>Qte Formuler</th>
+                <th>Modification</th>
+
+            </tr>
+            </thead>
+            @foreach (DataRow dataRow in Model.Rows)
+        {
+            <tr>
+                @foreach(var item in dataRow.ItemArray)
+                {
+                    <td>
+                        @item.ToString()
+                    </td>
+                }
+            </tr>
+        }
+
+               
+                
+            
+            
+                <tr>
+                   
+
+
+
+
+
+                    <td>
+                        <a href="{{ url("/ModifierMédicament") }}/{{ $UnMedicament->id_medicament}}">
+                            <span class="glyphicon glyphicon-pencil btn btn-warning" data-toggle="tooltip" data-placement="top" title="Modifier">
+                                Modifier
+                            </span>
+                        </a>
+
+                        <a href="{{ url("/SupprimerMédicament") }}/{{ $UnMedicament->id_medicament}}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce médicament et toute ses préscriptions  ?');">
+                            <span class="glyphicon glyphicon-remove btn  btn-danger" data-toggle="tooltip" data-placement="top" title="Modifier">
+                                Supprimer
+                            </span>
+                        </a>
+
+                        <a href="{{ url("/GestionFormulation") }}/{{ $UnMedicament->id_medicament}}">
+                            <span class="glyphicon   glyphicon-info-sign btn btn-primary" data-toggle="tooltip" data-placement="top" title="Gestion Formulaton">
+                                Géstion Formulation
+                            </span>
+                        </a>
+                    </td>
+                </tr>
+           
+            <BR> <BR>
+        </table>
+    </div>
+
