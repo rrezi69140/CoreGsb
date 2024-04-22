@@ -1,5 +1,5 @@
 ﻿using CoreGsb.Models.MesExceptions;
-using MySql.Data.MySqlClient
+using MySql.Data.MySqlClient;
 
 
 
@@ -64,4 +64,4 @@ namespace CoreGsb.Models.Persistance
     }
 }
 
-    }
+    

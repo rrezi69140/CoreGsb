@@ -20,9 +20,28 @@ namespace CoreGsb.Models.Dao
                 return MesVisiteurs;
 
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
+                throw new MonException(er.MessageUtilisateur(), er.MessageApplication(), e.Message);
 
+            }
+        }
+
+        public static DataTable UnVisiteur(string login)
+        {
+            DataTable MesVisiteurs = new DataTable();
+            Serreurs er = new Serreurs("Erreur de lecture des visiteurs ", "Visiteur.GetVisiteur");
+
+            try
+            { 
+                String RequetteSQL = $"SELECT * FROM Visiteur where login_visiteur  =  {login}   ";
+                MesVisiteurs = DBInterface.Lecture(RequetteSQL, er);
+                return UnVisiteurs;
+
+            }
+            catch (Exception e)
+            {
+                throw new MonException(er.MessageUtilisateur(), er.MessageApplication(), e.Message);
 
             }
         }
