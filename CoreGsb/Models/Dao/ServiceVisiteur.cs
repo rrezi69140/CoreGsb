@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using CoreGsb.Models.MesExceptions;
+using CoreGsb.Models.Persistance;
 namespace CoreGsb.Models.Dao
 
 
@@ -15,7 +16,7 @@ namespace CoreGsb.Models.Dao
             try
             {
                 String RequetteSQL = "SELECT * FROM Visiteur";
-                MesVisiteurs = DBInterface.Lecture( RequetteSQL );
+                MesVisiteurs = DBInterface.Lecture( RequetteSQL,er );
                 return MesVisiteurs;
 
             }
