@@ -1,4 +1,6 @@
 ﻿using CoreGsb.Models.Dao;
+using CoreGsb.Models.MesExceptions;
+using CoreGsb.Models.Metiers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -83,13 +85,60 @@ namespace CoreGsb.Controllers
         }
 
 
-        public ActionResult Connexion()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Controle()
         {
+            try
+            {
+                // on récupère les données du formulaire
+                string login = Request.Form["login"];
+                string mdp = Request.Form["pwd"];
+                try
+                {
+                    ServiceVisiteur unServiceVIsiteur = new ServiceVisiteur();
+                    Visiteur unVIsiteur = unServiceVIsiteur.GetUnVisiteur(login);
+                    if (unVIsiteur != null)
+                    {
+                        try
+                        {
 
-            
-            return View();
+
+
+                            if (unVIsiteur.Password != mdp)
+                            {
+                                ModelState.AddModelError("Erreur", "Erreur lors du contrôle du  mot de passe pour: " + login);
+                            return RedirectToAction("Index", "Connexion");
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            ModelState.AddModelError("Erreur", "Erreur lors du contrôle : " +
+                           e.Message);
+                            return RedirectToAction("Index", "Connexion");
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Erreur", "Erreur login erroné : " + login);
+                        return RedirectToAction("Index", "Connexion");
+                    }
+                }
+                catch (MonException e)
+                {
+                    ModelState.AddModelError("Erreur", "Erreur lors de l'authentification : " +
+                   e.Message);
+                    return RedirectToAction("Index", "Connexion");
+                }
+                return RedirectToAction("Index", "Home");
+            }
+            catch (MonException e)
+            {
+                ModelState.AddModelError("Erreur", "Erreur lors de l'authentification : " +
+               e.Message);
+                return RedirectToAction("Index", "Connexion");
+            }
         }
-
 
     }   
 }

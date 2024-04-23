@@ -3,10 +3,10 @@ using System.Security;
 using CoreGsb.Models.MesExceptions;
 using CoreGsb.Models.Metiers;
 using CoreGsb.Models.Persistance;
-namespace CoreGsb.Models.Dao
+namespace CoreGsb.Models.Dao;
 
 
-{
+
     public class ServiceVisiteur
     {
 
@@ -29,16 +29,15 @@ namespace CoreGsb.Models.Dao
             }
         }
 
-        public static DataTable GetUnVisiteur(string login)
+         public Visiteur GetUnVisiteur(string login)
         {
             DataTable dt;
             Visiteur INvISIT = null;
-            String RequetteSQL = $"SELECT * FROM Visiteur where login_visiteur  =  {login}   ";
+            String RequetteSQL = $"SELECT * FROM Visiteur where login_visiteur  =  '{login}'   ";
             Serreurs er = new Serreurs("Erreur de lecture des visiteurs ", "Visiteur.GetUnVisiteur");
 
             try
-            { 
-                
+            {       
                 dt = DBInterface.Lecture(RequetteSQL, er);
                 if (dt.IsInitialized && dt.Rows.Count > 0)
                 {
@@ -72,4 +71,4 @@ namespace CoreGsb.Models.Dao
 
        
     }
-}
+

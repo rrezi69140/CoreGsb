@@ -15,19 +15,19 @@ namespace CoreGsb.Models.Metiers
         private string codePostaleVisiteur;
         private string villeVisteur;
         private DateTime dateEmbauche;
-        private string login ;
-        private string password ;
+        private string login;
+        private string password;
         private string typeVisiteur;
 
 
         public int IdVisiteur { get => idVisiteur; set => idVisiteur = value; }
-        public int IdLaboratoire { get => idLaboratoire; set => idLaboratoire = value;}
-        public int IdSecteur { get => idSecteur; set => idSecteur = value;}
+        public int IdLaboratoire { get => idLaboratoire; set => idLaboratoire = value; }
+        public int IdSecteur { get => idSecteur; set => idSecteur = value; }
         public string Nom { get => nom; set => nom = value; }
 
         public string Prenom { get => prenom; set => prenom = value; }
         public string AdresseVisiteur { get => adresseVisiteur; set => adresseVisiteur = value; }
-        public string CodePostaleVsiteur { get => codePostaleVisiteur; set { codePostaleVisiteur = value;} }
+        public string CodePostaleVsiteur { get => codePostaleVisiteur; set { codePostaleVisiteur = value; } }
         public string VilleVisteur { get => villeVisteur; set { villeVisteur = value; } }
         public DateTime DateEmbauche { get => dateEmbauche; set { dateEmbauche = value; } }
         public string Login { get => login; set { login = value; } }
@@ -36,19 +36,35 @@ namespace CoreGsb.Models.Metiers
 
         public Visiteur(
           int idVisiteur,
-         int IdLaboratoire,
-         int IdSecteur,
-         string  Nom,
-         string Prenom,
-         string AdresseVisiteur,
-         string CodePostaleVisiteur,
-         string VilleVisteur,
-         DateTime DateEmbauche,
-         string Login,
-         string Password,
-         string TypeVisiteur
+          int idLaboratoire,
+         int idSecteur,
+         string nom,
+         string prenom,
+         string adresseVisiteur,
+         string codePostaleVisiteur,
+         string villeVisteur,
+         DateTime dateEmbauche,
+         string login,
+         string password,
+         string typeVisiteur
             )
 
+        {
+            this.prenom = prenom;
+            this.idLaboratoire = idLaboratoire;
+            this.idSecteur = idSecteur;
+            this.nom = nom;
+            this.IdVisiteur = idVisiteur;
+            this.adresseVisiteur = adresseVisiteur;
+            this.codePostaleVisiteur = codePostaleVisiteur;
+            this.villeVisteur = villeVisteur;
+            this.dateEmbauche = dateEmbauche;
+            this.login = login;
+            this.password = password;
+            this.typeVisiteur = typeVisiteur;
+        }
+
+        public Visiteur()
         {
 
         }
