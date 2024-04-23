@@ -4,10 +4,13 @@ using CoreGsb.Models.Metiers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
+
+
 namespace CoreGsb.Controllers
 {
     public class ConnexionController : Controller
     {
+        
         // GET: ConnexionController1
         
         public ActionResult Index()
@@ -84,6 +87,18 @@ namespace CoreGsb.Controllers
             }
         }
 
+        public IActionResult Deconnexion()
+        {
+            
+            
+                HttpContext.Session.SetInt32("IsConneted", 0);
+            return RedirectToAction("Index", "Home");
+
+
+
+        }
+
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -107,8 +122,14 @@ namespace CoreGsb.Controllers
 
                             if (unVIsiteur.Password != mdp)
                             {
+                              
+
                                 ModelState.AddModelError("Erreur", "Erreur lors du contrôle du  mot de passe pour: " + login);
                             return RedirectToAction("Index", "Connexion");
+                            }
+                            else
+                            {
+                                HttpContext.Session.SetInt32("IsConneted", 1);
                             }
                         }
                         catch (Exception e)

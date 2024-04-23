@@ -1,7 +1,14 @@
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = ".YourApp.Session";
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    // Autres options de session...
+});
 
 var app = builder.Build();
 
@@ -9,12 +16,17 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
+
 }
 app.UseStaticFiles();
 
 app.UseRouting();
 
 app.UseAuthorization();
+
+
+app.UseSession();
+
 
 app.MapControllerRoute(
     name: "default",
