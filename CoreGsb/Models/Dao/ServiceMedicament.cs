@@ -15,10 +15,10 @@ namespace CoreGsb.Models.Dao
 
             try
             {
-                String RequetteSQL = "SELECT * FROM v_listermedicament";
+                String RequetteSQL = "SELECT nom_commercial,lib_famille,effets,contre_indication,lib_presentation, depot_legal,qte_formuler,prix_echantillon FROM v_listermedicament";
                 MesMedicaments = DBInterface.Lecture(RequetteSQL, er);
                 return MesMedicaments;
-
+                
             }
             catch (Exception e)
             {
