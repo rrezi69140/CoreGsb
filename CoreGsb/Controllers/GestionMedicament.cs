@@ -4,6 +4,9 @@ using CoreGsb.Models.Dao;
 using CoreGsb.Models.MesExceptions;
 
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using CoreGsb.Models.Metiers;
+using Mysqlx.Resultset;
+using System.Data;
 
 
 namespace CoreGsb.Controllers
@@ -36,6 +39,76 @@ namespace CoreGsb.Controllers
                 {
                     Reponsse =  ServiceMedicament.DeletUnMedicament(id);
                    
+
+
+                }
+                catch (MonException e)
+                {
+                    Reponsse = false;
+                    ModelState.AddModelError("Erreur", "Erreur lors  de la récuperation des mangas : " + e.Message);
+                }
+                ViewBag.Reponsse = Reponsse;
+                return View();
+            }
+        }
+
+
+
+        public IActionResult ModiffierMédicament(string id)
+        {
+            {
+                ServiceMedicament serviceMedicament = new ServiceMedicament();
+                
+                
+
+
+
+                System.Data.DataTable UnMedicament = null;
+                System.Data.DataTable MesFamilles = null;
+                try
+                {
+                    UnMedicament = ServiceMedicament.GetUnsMedicament(id);
+
+
+                    foreach (DataRow dataRow in UnMedicament.Rows)
+
+                    {
+
+                        Medicament medicamentEntity = new Medicament(dataRow.ItemArray[0].ToString(), dataRow.ItemArray[1].ToString(), dataRow.ItemArray[2].ToString(), dataRow.ItemArray[3].ToString(), dataRow.ItemArray[4].ToString(), dataRow.ItemArray[5].ToString(), dataRow.ItemArray[6].ToString());
+                        ViewBag.Medicament = medicamentEntity;
+                    }
+
+                    MesFamilles = ServiceFamille.GetTousLesFamilles();
+                    ViewBag.FamilleMedicament = MesFamilles;
+
+
+
+
+
+
+
+
+                }
+
+                catch (MonException e)
+                {
+
+                    ModelState.AddModelError("Erreur", "Erreur lors  de la récuperation des mangas : " + e.Message);
+                }
+               
+                return View();
+            }
+        }
+
+        public IActionResult PostModiffierMédicament(string id)
+        {
+            {
+                ServiceMedicament ServiceMedicament = new ServiceMedicament();
+                Boolean Reponsse;
+                try
+                {
+                    Reponsse = ServiceMedicament.DeletUnMedicament(id);
+
 
 
                 }

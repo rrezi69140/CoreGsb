@@ -55,15 +55,15 @@
                 <td> @dataRow.ItemArray[7] </td>
                 <td> @dataRow.ItemArray[8] </td>
 
-                
-             
 
-            
-           
+
+
+
+               
 
                 <td>
                     <a>
-
+                        <a href="@Url.Action("ModiffierMédicament", "GestionMedicament", new { id = dataRow.ItemArray[0].ToString()})">
                         <span class="glyphicon glyphicon-pencil btn btn-warning" data-toggle="tooltip" data-placement="top" title="Modifier">
                            Modifier 
                         </span>

@@ -48,5 +48,23 @@ namespace CoreGsb.Models.Dao
             }
         }
 
+        public static DataTable GetUnsMedicament(string idMedicament)
+        {
+            DataTable UnMedicament = new DataTable();
+            Serreurs er = new Serreurs("Erreur de lecture d'un Medicament ", "Medicament.GetUnMedicament");
+
+            try
+            {
+                String RequetteSQL = $"SELECT *  FROM medicament where id_medicament = {idMedicament}";
+                UnMedicament = DBInterface.Lecture(RequetteSQL, er);
+                return UnMedicament;
+
+            }
+            catch (Exception e)
+            {
+                throw new MonException(er.MessageUtilisateur(), er.MessageApplication(), e.Message);
+            }
+        }
+
     }
 }
