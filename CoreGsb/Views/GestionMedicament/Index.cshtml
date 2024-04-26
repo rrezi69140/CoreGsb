@@ -4,6 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
+<script>
+    jQuery(document).ready(function () {
+        jQuery('#TableMedicament').DataTable();
+    });
+</script>
+
 <head>
 
 </head>
@@ -11,7 +17,7 @@
         <div class="blanc">
             <center ><h1>Liste des Medicaments </h1> </center >
         </div>
-        <table class="table table-bordered table-striped" id="TableMedicament">
+    <table class="table table-bordered table-striped" id="TableMedicament">
             <thead>
             <tr>
 
@@ -21,7 +27,6 @@
                 <th>effets</th>
                 <th>Contre Indication</th>
                 <th>Presentation</th>
-                
                 <th>Qte Formuler</th>
                  <th>Prix echantillion</th>
                 <th>Modification</th>
@@ -33,26 +38,42 @@
             @foreach (DataRow dataRow in Model.Rows)
         {
             <tr>
-                @foreach(var item in dataRow.ItemArray)
-                {
-                    <td>
-                        @item.ToString();
-                    </td>
-                }
+
+
+                
+
+                <td> @dataRow.ItemArray[1] </td>
+
+
+
+
+                <td> @dataRow.ItemArray[2] </td>
+                <td> @dataRow.ItemArray[3] </td>
+                <td> @dataRow.ItemArray[4] </td>
+                <td> @dataRow.ItemArray[5] </td>
+                <td> @dataRow.ItemArray[6] </td>
+                <td> @dataRow.ItemArray[7] </td>
+                <td> @dataRow.ItemArray[8] </td>
+
+                
+             
+
             
            
 
                 <td>
-                    <a href="">
+                    <a>
+
                         <span class="glyphicon glyphicon-pencil btn btn-warning" data-toggle="tooltip" data-placement="top" title="Modifier">
-                            Modifier 
+                           Modifier 
                         </span>
                     </a>
                 </td>
 
-                <td>   
-                <a href="">
-                        <span class="glyphicon glyphicon-remove btn  btn-danger" data-toggle="tooltip" data-placement="top" title="Supprimer">
+                <td>
+                    <a href="@Url.Action("SupprimerMedicament", "GestionMedicament", new { id = dataRow.ItemArray[0].ToString()})">
+
+                        <span class="glyphicon glyphicon-remove btn  btn-danger" data-toggle="tooltip" data-placement="top" title="Supprimer"   >
                             Supprimer
                         </span>
                     </a>
@@ -72,7 +93,8 @@
             
    
            
-            <BR> <BR>
         </table>
     </div>
+
+
 

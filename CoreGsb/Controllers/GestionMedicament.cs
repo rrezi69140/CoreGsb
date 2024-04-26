@@ -17,12 +17,39 @@ namespace CoreGsb.Controllers
             try
             {   
                 MesMedicament = ServiceMedicament.GetTousLesMedicament();
+                ViewBag.Medicamnt = MesMedicament;
             }
             catch(MonException e) {
                 ModelState.AddModelError("Erreur", "Erreur lors  de la récuperation des mangas : " + e.Message);
             }
             return View(MesMedicament);
         }
+
+
+
+        public IActionResult SupprimerMedicament(string  id)
+        {
+            {
+                ServiceMedicament ServiceMedicament = new ServiceMedicament();
+                Boolean Reponsse ;
+                try
+                {
+                    Reponsse =  ServiceMedicament.DeletUnMedicament(id);
+                   
+
+
+                }
+                catch (MonException e)
+                {
+                    Reponsse = false;
+                    ModelState.AddModelError("Erreur", "Erreur lors  de la récuperation des mangas : " + e.Message);
+                }
+                ViewBag.Reponsse = Reponsse;
+                return View();
+            }
+        }
+
+
 
         // GET: GestionMedicament/Details/5
         public ActionResult Details(int id)

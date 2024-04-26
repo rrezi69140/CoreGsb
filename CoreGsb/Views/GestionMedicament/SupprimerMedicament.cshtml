@@ -1,0 +1,16 @@
+﻿@model System.Data.DataTable
+@using System.Data;
+@{
+    ViewData["Title"] = "SupprimerMedicament";
+}
+
+@if (ViewBag.Reponsse != true)
+{
+    <h1>Echec de la suppression '</h1>
+}
+
+
+@if (ViewBag.Reponsse == true)
+{
+    <h1>Reussite  de la supression </h1>
+}
