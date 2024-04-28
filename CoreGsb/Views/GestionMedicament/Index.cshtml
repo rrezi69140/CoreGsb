@@ -22,14 +22,14 @@
             <thead>
             <tr>
 
-                <th>Nom du Medicament </th>
+                <th>Nom comercial </th>
                 <th>Famille</th>
-                <th>Depot Legal</th>
-                <th>effets</th>
+                <th>Effet</th>
                 <th>Contre Indication</th>
                 <th>Presentation</th>
+                <th>Depot legal</th>
                 <th>Qte Formuler</th>
-                 <th>Prix echantillion</th>
+                <th>Prix echantillion</th>
                 <th>Modification</th>
                 <th>Supression</th>
                 <th>Gestion Formulation</th>
@@ -99,7 +99,7 @@
         jQuery(document).ready(function () {
             $('#TableMedicament').DataTable({
                 "columnDefs": [{
-                    "targets": [8],
+                    "targets": [7],
                     "visible": true,
                     "searchable": true
                 }]
