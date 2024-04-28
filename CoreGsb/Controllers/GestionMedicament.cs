@@ -100,16 +100,23 @@ namespace CoreGsb.Controllers
             }
         }
 
-        public IActionResult PostModiffierMédicament(string id)
+        public IActionResult PostModiffierMédicament()
         {
             {
                 ServiceMedicament ServiceMedicament = new ServiceMedicament();
                 Boolean Reponsse;
+
+                string idMedicament = Request.Form["IdMedicament"];
+                string idFamille = Request.Form["Famille"];
+                string depotLegal = Request.Form["DepotLegal"];
+                string nomComercial = Request.Form["NomCommercial"];
+                string effets = Request.Form["Effets"];
+                string contreIndication = Request.Form["ContreIndication"];
+                string prixEchantillon = Request.Form["PrixEchantillon"];
+
                 try
                 {
-                    Reponsse = ServiceMedicament.DeletUnMedicament(id);
-
-
+                    Reponsse = ServiceMedicament.ModifierMedicament(idMedicament, idFamille, depotLegal, nomComercial, effets, contreIndication, prixEchantillon);
 
                 }
                 catch (MonException e)

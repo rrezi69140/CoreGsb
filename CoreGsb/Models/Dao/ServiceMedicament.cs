@@ -66,5 +66,28 @@ namespace CoreGsb.Models.Dao
             }
         }
 
+
+        public Boolean ModifierMedicament(string idMedicament, string idFamille,string depotLegal,string nomComercial,string effets,string contreIndication,string prixEchantillon )
+        {
+            DataTable Reponsse = new DataTable();
+            Serreurs er = new Serreurs("Erreur de la modification d'un medicament  s ", "Medicament.Modifier");
+
+
+            try
+            {
+                String RequetteSQL = $"UPDATE  medicament SET id_famille   = {idFamille}  , depot_legal   = '{depotLegal.Replace("'", "''")}' , nom_commercial   = '{nomComercial.Replace("'", "''")}' , effets   = '{effets.Replace("'", "''")}' , contre_indication   = '{contreIndication.Replace("'", "''")}' , prix_echantillon   = '{prixEchantillon}'  WHERE id_medicament  = {idMedicament} ";
+                Reponsse = DBInterface.Lecture(RequetteSQL, er);
+                 
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw new MonException(er.MessageUtilisateur(), er.MessageApplication(), e.Message);
+
+            }
+        }
+
     }
 }

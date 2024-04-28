@@ -1,0 +1,19 @@
+﻿
+
+
+@model System.Data.DataTable
+@using System.Data;
+@{
+    ViewData["Title"] = "ReponssePostModiffierMédicament";
+}
+
+@if (ViewBag.Reponsse != true)
+{
+    <h1>Echec de la Modification '</h1>
+}
+
+
+@if (ViewBag.Reponsse == true)
+{
+    <h1>Reussite  de la Modificaiton </h1>
+}
