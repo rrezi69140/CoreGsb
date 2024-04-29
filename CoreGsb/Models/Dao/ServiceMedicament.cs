@@ -89,5 +89,29 @@ namespace CoreGsb.Models.Dao
             }
         }
 
+
+
+        public Boolean AjouterMedicament(string idMedicament, string idFamille, string depotLegal, string nomComercial, string effets, string contreIndication, string prixEchantillon)
+        {
+            DataTable Reponsse = new DataTable();
+            Serreurs er = new Serreurs("Erreur de l'ajout  d'un medicament  s ", "Medicament.Ajouter");
+
+
+            try
+            {
+                String RequetteSQL = $"INSERT INTO   medicament (id_famille,depot_legal,nom_commercial,effets,contre_indication,prix_echantillon)  VALUE({idFamille}  {depotLegal.Replace("'", "''")}' ,  '{nomComercial.Replace("'", "''")}' , '{effets.Replace("'", "''")}' , '{contreIndication.Replace("'", "''")}' ) ";
+                Reponsse = DBInterface.Lecture(RequetteSQL, er);
+
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw new MonException(er.MessageUtilisateur(), er.MessageApplication(), e.Message);
+                
+            }
+        }
+
     }
 }
