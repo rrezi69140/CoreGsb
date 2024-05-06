@@ -91,7 +91,7 @@ namespace CoreGsb.Models.Dao
 
 
 
-        public Boolean AjouterMedicament(string idMedicament, string idFamille, string depotLegal, string nomComercial, string effets, string contreIndication, string prixEchantillon)
+        public Boolean AjouterMedicament( string idFamille, string depotLegal, string nomComercial, string effets, string contreIndication, string prixEchantillon)
         {
             DataTable Reponsse = new DataTable();
             Serreurs er = new Serreurs("Erreur de l'ajout  d'un medicament  s ", "Medicament.Ajouter");
@@ -99,7 +99,7 @@ namespace CoreGsb.Models.Dao
 
             try
             {
-                String RequetteSQL = $"INSERT INTO   medicament (id_famille,depot_legal,nom_commercial,effets,contre_indication,prix_echantillon)  VALUE({idFamille}  {depotLegal.Replace("'", "''")}' ,  '{nomComercial.Replace("'", "''")}' , '{effets.Replace("'", "''")}' , '{contreIndication.Replace("'", "''")}' ) ";
+                String RequetteSQL = $"INSERT INTO   medicament (id_famille,depot_legal,nom_commercial,effets,contre_indication,prix_echantillon)  VALUE('{idFamille.Replace("'", "''")}'  ,'{depotLegal.Replace("'", "''")}' ,  '{nomComercial.Replace("'", "''")}' , '{effets.Replace("'", "''")}' , '{contreIndication.Replace("'", "''")}','{prixEchantillon.Replace("'", "''")}' ) ";
                 Reponsse = DBInterface.Lecture(RequetteSQL, er);
 
                 return true;

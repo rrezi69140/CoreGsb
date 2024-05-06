@@ -14,10 +14,20 @@
 
 
 
+
     <div class="container">
         <div class="blanc">
             <center ><h1>Liste des Medicaments </h1> </center >
         </div>
+
+    <div class="blanc">
+        <a asp-controller="GestionMedicament" asp-action="AjouterMedicament">
+            <span class="glyphicon glyphicon-pencil btn btn-success" data-toggle="tooltip" data-placement="top" title="Ajouter">
+                Ajouter un Medicament
+            </span>
+        </a>
+    </div>
+
     <table class="table table-bordered table-striped" id="TableMedicament">
             <thead>
             <tr>

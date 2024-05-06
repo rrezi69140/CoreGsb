@@ -93,7 +93,7 @@ namespace CoreGsb.Controllers
                 catch (MonException e)
                 {
 
-                    ModelState.AddModelError("Erreur", "Erreur lors  de la récuperation des mangas : " + e.Message);
+                    ModelState.AddModelError("Erreur", "Erreur lors  de la récuperation des familles et des medicament : " + e.Message);
                 }
                
                 return View();
@@ -128,6 +128,53 @@ namespace CoreGsb.Controllers
                 return View();
             }
         }
+
+        public IActionResult AjouterMedicament()
+        {
+            ServiceMedicament serviceMedicament = new ServiceMedicament();
+            System.Data.DataTable MesFamilles = null;
+
+            try
+            {
+                MesFamilles = ServiceFamille.GetTousLesFamilles();
+                ViewBag.FamilleMedicament = MesFamilles;
+               
+            }
+            catch(MonException e ) {
+                ModelState.AddModelError("Erreur", "Erreur lors  de la récuperation des familles : " + e.Message);
+            }
+            return View();
+        }
+
+
+        public IActionResult PostAjouterMedicament()
+        {
+            {
+                ServiceMedicament ServiceMedicament = new ServiceMedicament();
+                Boolean Reponsse;
+
+                string idFamille = Request.Form["Famille"];
+                string depotLegal = Request.Form["DepotLegal"];
+                string nomComercial = Request.Form["NomCommercial"];
+                string effets = Request.Form["Effets"];
+                string contreIndication = Request.Form["ContreIndication"];
+                string prixEchantillon = Request.Form["PrixEchantillon"];
+
+                try
+                {
+                    Reponsse = ServiceMedicament.AjouterMedicament( idFamille, depotLegal, nomComercial, effets, contreIndication, prixEchantillon);
+
+                }
+                catch (MonException e)
+                {
+                    Reponsse = false;
+                    ModelState.AddModelError("Erreur", "Erreur lors  de la récuperation des mangas : " + e.Message);
+                }
+                ViewBag.Reponsse = Reponsse;
+                return View();
+            }
+        }
+
 
 
 
