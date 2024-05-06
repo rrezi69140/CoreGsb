@@ -54,10 +54,6 @@
                 
 
                 <td> @dataRow.ItemArray[1] </td>
-
-
-
-
                 <td> @dataRow.ItemArray[2] </td>
                 <td> @dataRow.ItemArray[3] </td>
                 <td> @dataRow.ItemArray[4] </td>
@@ -73,7 +69,6 @@
                
 
                 <td>
-                    <a>
                         <a href="@Url.Action("ModiffierMédicament", "GestionMedicament", new { id = dataRow.ItemArray[0].ToString()})">
                         <span class="glyphicon glyphicon-pencil btn btn-warning" data-toggle="tooltip" data-placement="top" title="Modifier">
                            Modifier 
@@ -90,8 +85,8 @@
                     </a>
                 </td>
                 <td>
-                    <a href="">
-                        <span class="glyphicon   glyphicon-info-sign btn btn-primary" data-toggle="tooltip" data-placement="top" title="Gestion Formulaton">
+                    <a href="@Url.Action("Index", "Prescription", new { id = dataRow.ItemArray[0].ToString()})">
+                        <span class="glyphicon   glyphicon-info-sign btn btn-primary" data-toggle="tooltip" data-placement="top" title="Gestion Prescription">
                             Géstion Formulation
                         </span>
                     </a>

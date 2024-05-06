@@ -1,0 +1,92 @@
+﻿@model System.Data.DataTable
+@using System.Data;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    jQuery(document).ready(function () {
+        jQuery('#TablePrescription').DataTable();
+    });
+</script>
+
+
+
+
+<div class="container">
+    <div class="blanc">
+        <center><h1>Liste des Prescriptions </h1> </center>
+    </div>
+
+    <div class="blanc">
+        <a asp-controller="GestionMedicament" asp-action="Ajouter Prescription">
+            <span class="glyphicon glyphicon-pencil btn btn-success" data-toggle="tooltip" data-placement="top" title="Ajouter">
+                Ajouter un Prescription
+            </span>
+        </a>
+    </div>
+
+    <table class="table table-bordered table-striped" id="TablePrescription">
+        <thead>
+            <tr>
+
+                <th>Type d'individue</th>
+                <th>QTE Dosage</th>
+                <th>Unité de dossage</th>
+                <th>Posologie</th>
+                <th>Modification</th>
+                <th>Supression</th>
+             
+            </tr>
+        </thead>
+        @foreach (DataRow dataRow in Model.Rows)
+        {
+            <tr>
+                <td> @dataRow.ItemArray[1] </td>
+                <td> @dataRow.ItemArray[2] </td>
+                <td> @dataRow.ItemArray[3] </td>
+                <td> @dataRow.ItemArray[4] </td>
+                <td>
+                    <a href="@Url.Action("ModiffierMédicament", "GestionMedicament", new { id = dataRow.ItemArray[0].ToString()})">
+                        <span class="glyphicon glyphicon-pencil btn btn-warning" data-toggle="tooltip" data-placement="top" title="Modifier">
+                            Modifier
+                        </span>
+                    </a>
+                </td>
+
+                <td>
+                    <a href="@Url.Action("SupprimerMedicament", "GestionMedicament", new { id = dataRow.ItemArray[0].ToString()})">
+
+                        <span class="glyphicon glyphicon-remove btn  btn-danger" data-toggle="tooltip" data-placement="top" title="Supprimer">
+                            Supprimer
+                        </span>
+                    </a>
+                </td>
+              
+            </tr>
+        }
+
+
+
+
+
+
+    </table>
+    <script>
+        jQuery(document).ready(function () {
+            $('#TablePrescription').DataTable({
+                "columnDefs": [{
+                    "targets": [6],
+                    "visible": true,
+                    "searchable": true
+                }]
+            });
+    </script>
+</div>
+
+
+
+
+
