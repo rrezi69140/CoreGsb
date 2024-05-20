@@ -48,5 +48,47 @@ namespace CoreGsb.Models.Dao
         }
 
 
+        public Boolean AjouterPrescription(string idDosage, string IdMedicament, string IdTypeIndividue, string posologie)
+        {
+            DataTable Reponsse = new DataTable();
+            Serreurs er = new Serreurs("Erreur de l'ajout  d'une prescription  ", "precription.Ajouter");
+
+
+            try
+            {
+                String RequetteSQL = $"INSERT INTO   prescrire (id_dosage ,id_medicament ,id_type_individu ,posologie)  VALUE('{idDosage.Replace("'", "''")}'  ,'{IdMedicament.Replace("'", "''")}','{IdTypeIndividue.Replace("'", "''")}' ,'{posologie.Replace("'", "''")}' ) ";
+                Reponsse = DBInterface.Lecture(RequetteSQL, er);
+
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                return false;
+                throw new MonException(er.MessageUtilisateur(), er.MessageApplication(), e.Message);
+
+            }
+        }
+
+
+        public static DataTable GetUnePrescription(string idDosage,string idMedicament,string IdTYpeIndividue)
+        {
+            DataTable UnePrescription = new DataTable();
+            Serreurs er = new Serreurs("Erreur de lecture d'un Medicament ", "Medicament.GetUnMedicament");
+
+            try
+            {
+                String RequetteSQL = $"SELECT *  FROM prescrire where id_dosage  = {idDosage} and   id_medicament  = {idMedicament} and  id_type_individu = {IdTYpeIndividue} ";
+                UnePrescription = DBInterface.Lecture(RequetteSQL, er);
+                return UnePrescription;
+
+            }
+            catch (Exception e)
+            {
+                throw new MonException(er.MessageUtilisateur(), er.MessageApplication(), e.Message);
+            }
+        }
+
+
     }
 }

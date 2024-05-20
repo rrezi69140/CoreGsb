@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "SupprimerPrescription";
+}
+
+
+
+@if (ViewBag.Reponsse != true)
+{
+    <h1>Echec de la Supression '</h1>
+}
+
+
+@if (ViewBag.Reponsse == true)
+{
+    <h1>Reussite  de la Supression </h1>
+}

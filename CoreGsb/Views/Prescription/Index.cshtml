@@ -20,10 +20,11 @@
         <center><h1>Liste des Prescriptions </h1> </center>
     </div>
 
+
     <div class="blanc">
-        <a asp-controller="GestionMedicament" asp-action="Ajouter Prescription">
+        <a href="@Url.Action("AjouterPrescription", "Prescription", new { idMedicament = ViewBag.IdMedicament})">
             <span class="glyphicon glyphicon-pencil btn btn-success" data-toggle="tooltip" data-placement="top" title="Ajouter">
-                Ajouter un Prescription
+                Ajouter une Prescription
             </span>
         </a>
     </div>
@@ -57,7 +58,7 @@
                 </td>
 
                 <td>
-                    <a href="@Url.Action("SupprimerMedicament", "GestionMedicament", new { id = dataRow.ItemArray[0].ToString()})">
+                    <a href="@Url.Action("SupprimerPrescription", "Prescription", new { idMedicament = ViewBag.IdMedicament})">
 
                         <span class="glyphicon glyphicon-remove btn  btn-danger" data-toggle="tooltip" data-placement="top" title="Supprimer">
                             Supprimer

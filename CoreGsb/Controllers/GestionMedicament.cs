@@ -58,18 +58,11 @@ namespace CoreGsb.Controllers
         {
             {
                 ServiceMedicament serviceMedicament = new ServiceMedicament();
-                
-                
-
-
-
                 System.Data.DataTable UnMedicament = null;
                 System.Data.DataTable MesFamilles = null;
                 try
                 {
                     UnMedicament = ServiceMedicament.GetUnsMedicament(id);
-
-
                     foreach (DataRow dataRow in UnMedicament.Rows)
 
                     {
@@ -77,16 +70,8 @@ namespace CoreGsb.Controllers
                         Medicament medicamentEntity = new Medicament(dataRow.ItemArray[0].ToString(), dataRow.ItemArray[1].ToString(), dataRow.ItemArray[2].ToString(), dataRow.ItemArray[3].ToString(), dataRow.ItemArray[4].ToString(), dataRow.ItemArray[5].ToString(), dataRow.ItemArray[6].ToString());
                         ViewBag.Medicament = medicamentEntity;
                     }
-
                     MesFamilles = ServiceFamille.GetTousLesFamilles();
                     ViewBag.FamilleMedicament = MesFamilles;
-
-
-
-
-
-
-
 
                 }
 
