@@ -58,7 +58,7 @@
                 </td>
 
                 <td>
-                    <a href="@Url.Action("SupprimerPrescription", "Prescription", new { idMedicament = ViewBag.IdMedicament})">
+                    <a href="@Url.Action("SupprimerPrescription", "Prescription", new {IdDosage = @dataRow.ItemArray[5] , idMedicament = @dataRow.ItemArray[0], IdTYpeIndividu = @dataRow.ItemArray[6] })">
 
                         <span class="glyphicon glyphicon-remove btn  btn-danger" data-toggle="tooltip" data-placement="top" title="Supprimer">
                             Supprimer

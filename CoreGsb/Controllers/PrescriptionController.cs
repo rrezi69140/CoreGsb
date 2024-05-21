@@ -107,7 +107,7 @@ namespace CoreGsb.Controllers
                 try
                 {
     
-                    Reponsse = servicePrescription.DeletPrescirption(IdDosage, IdMedicament, IdTYpeIndividu);
+                    Reponsse = servicePrescription.DeletPrescirption(IdMedicament,IdDosage,  IdTYpeIndividu);
 
                 }
                 catch (MonException e)
