@@ -99,29 +99,15 @@ namespace CoreGsb.Controllers
             }
         }
 
-        public IActionResult SupprimerPrescription(string idMedicament)
+        public IActionResult SupprimerPrescription(string IdDosage, string IdMedicament, string IdTYpeIndividu)
         {
             {
-                ServiceMedicament ServiceMedicament = new ServiceMedicament();
                 ServicePrescription servicePrescription = new ServicePrescription();
-                System.Data.DataTable UnMedicament = null;
-
-                Presciption PresciptionEntity = null;
-        Boolean Reponsse;
+                 Boolean Reponsse;
                 try
                 {
-                    UnMedicament = ServiceMedicament.GetUnsMedicament(idMedicament);
-                    foreach (DataRow dataRow in UnMedicament.Rows)
-
-                    {
-
-                        PresciptionEntity = new Presciption(dataRow.ItemArray[0].ToString(), dataRow.ItemArray[1].ToString(), dataRow.ItemArray[2].ToString(), dataRow.ItemArray[3].ToString());
-                       
-                    }
-
-                    Reponsse = servicePrescription.DeletPrescirption(PresciptionEntity.GetIdMedicament(), PresciptionEntity.GetIdDosage(),PresciptionEntity.GetIdTypeIndividue());
-
-
+    
+                    Reponsse = servicePrescription.DeletPrescirption(IdDosage, IdMedicament, IdTYpeIndividu);
 
                 }
                 catch (MonException e)
