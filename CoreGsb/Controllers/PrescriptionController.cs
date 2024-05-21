@@ -121,6 +121,73 @@ namespace CoreGsb.Controllers
         }
 
 
+
+        public IActionResult ModifierPrescription(string IdDosage, string IdMedicament, string IdTYpeIndividu)
+        {
+            {
+                System.Data.DataTable MesDosages = null;
+                System.Data.DataTable MesTypesIndividues = null;
+                System.Data.DataTable UnePrescription = null;
+                try
+                {
+                    UnePrescription = ServicePrescription.GetUnePrescription(IdDosage, IdMedicament, IdTYpeIndividu);
+                    foreach (DataRow dataRow in UnePrescription.Rows)
+
+                    {
+
+                        Presciption PresciptionEntity = new Presciption(dataRow.ItemArray[0].ToString(), dataRow.ItemArray[1].ToString(), dataRow.ItemArray[2].ToString(), dataRow.ItemArray[3].ToString());
+                        ViewBag.Prescirption = PresciptionEntity;
+                    }
+                    MesDosages = ServiceDosage.GetTousLesDosage();
+                    MesTypesIndividues = ServiceTypeIndividu.GetTousLesTypeIndividue();
+                    ViewBag.DosagePrescription = MesDosages;
+                    ViewBag.DosageTypeIndividue = MesTypesIndividues;
+
+
+                }
+
+                catch (MonException e)
+                {
+
+                    ModelState.AddModelError("Erreur", "Erreur lors  de la récuperation des familles et des medicament : " + e.Message);
+                }
+
+                return View();
+            }
+        }
+
+
+        public IActionResult PostModifierPrescription()
+        {
+            {
+                ServicePrescription ServicePrescription = new ServicePrescription();
+                Boolean Reponsse;
+
+                string idDosage = Request.Form["Dosage"];
+                string idMedicament = Request.Form["idMedicament"];
+                string IDTypeIndividue = Request.Form["TypeIndividue"];
+                string Posologie = Request.Form["Posologie"];
+                string AVidDosage = Request.Form["AvDosage"];
+                string AVIDTypeIndividue = Request.Form["AvTypeIndividue"];
+
+
+                try
+                {
+
+                    Reponsse = ServicePrescription.ModifierPrescription(idDosage, idMedicament, IDTypeIndividue, Posologie, AVidDosage, AVIDTypeIndividue);
+
+                }
+                catch (MonException e)
+                {
+                    Reponsse = false;
+                    ModelState.AddModelError("Erreur", "Erreur lors  de la Modification  d'une  Préscription : " + e.Message);
+                }
+                ViewBag.Reponsse = Reponsse;
+                return View();
+            }
+        }
+
+
         // GET: PrescriptionController/Details/5
         public ActionResult Details(int id)
         {

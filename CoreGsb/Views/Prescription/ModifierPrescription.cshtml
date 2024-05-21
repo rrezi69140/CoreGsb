@@ -1,0 +1,67 @@
+﻿@model System.Data.DataTable
+@using System.Data;
+@{
+    ViewData["Title"] = "ModifierPrescription";
+}
+
+<form asp-controller="Prescription" asp-action="PostModifierPrescription" method="post" class="login-form">
+    <div class="col-md-12 well well-md">
+        <center><h1> Ajouter une prescription  </h1></center>
+        <div class="form-horizontal">
+
+
+            <div class="form-group">
+                <label class="col-md-3 control-label"> Dosage: </label>
+                <div class="col-md-6 col-md-3">
+                    <select id="Dosage" name="Dosage" value="@ViewBag.Prescirption.GetIdDosage()">
+                        @foreach (DataRow dataRow in ViewBag.DosagePrescription.Rows)
+                        {
+                            <option value="@dataRow.ItemArray[0]">@dataRow.ItemArray[1] @dataRow.ItemArray[2] </option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label"> Type Individue: </label>
+                <div class="col-md-6 col-md-3">
+                    <select id="TypeIndividue" name="TypeIndividue" value=" @ViewBag.Prescirption.GetIdTypeIndividue()">
+                        @foreach (DataRow dataRow in ViewBag.DosageTypeIndividue.Rows)
+                        {
+                            <option value="@dataRow.ItemArray[0]">@dataRow.ItemArray[1]</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label"> Posologie : </label>
+                <div class="col-md-6 col-md-3">
+                    <input type="text" name="Posologie" class="form-control" value="@ViewBag.Prescirption.GetPosologie()" required autofocus>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-6 col-md-offset-3">
+                    <button type="submit" class="btn btn-success mb-2">
+                        <span class="glyphicon glyphicon-log-in"></span> Valider
+                    </button>
+                </div>
+            </div>
+
+            <input type="text" style="display:none" name="idMedicament"  value="@ViewBag.Prescirption.GetIdMedicament()" />
+            <input type="text" style="display:none" name="AvTypeIndividue" value="@ViewBag.Prescirption.GetIdTypeIndividue()" />
+            <input type="text" style="display:none" name="AvDosage" value="@ViewBag.Prescirption.GetIdDosage()" />
+          
+
+
+
+            <div class="col-md-6 col-md-offset-3">
+            </div>
+
+
+        </div>
+    </div>
+</form>

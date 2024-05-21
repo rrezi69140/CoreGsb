@@ -50,7 +50,7 @@
                 <td> @dataRow.ItemArray[3] </td>
                 <td> @dataRow.ItemArray[4] </td>
                 <td>
-                    <a href="@Url.Action("ModiffierMédicament", "GestionMedicament", new { id = dataRow.ItemArray[0].ToString()})">
+                    <a href="@Url.Action("ModifierPrescription", "Prescription", new {IdDosage = @dataRow.ItemArray[5] , idMedicament = @dataRow.ItemArray[0], IdTYpeIndividu = @dataRow.ItemArray[6] })">
                         <span class="glyphicon glyphicon-pencil btn btn-warning" data-toggle="tooltip" data-placement="top" title="Modifier">
                             Modifier
                         </span>
